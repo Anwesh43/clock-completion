@@ -1,8 +1,6 @@
-
+import {useState, useEffect, CSSProperties} from 'react'
 const scGap : number = 0.01 
 const delay : number = 20 
-
-import {useState, useEffect, CSSProperties} from 'react'
 
 export const useAnimatedScale = () => {
     const [scale, setScale] = useState(0)
@@ -17,8 +15,10 @@ export const useAnimatedScale = () => {
                 const interval = setInterval(() => {
                     setScale((prev : number) => {
                         if (prev > 1) {
-                            setAnimated(false)
-                            setMinDeg(minDeg + 30)
+                            //setAnimated(false)
+                            setMinDeg((prevMinDeg : number) => prevMinDeg + 15)
+                            //clearInterval(interval)
+                            setScale(0)
                             return 0 
                         }
                         return prev + scGap 
@@ -69,6 +69,7 @@ export const useStyle = (w : number, h : number, scale : number) => {
         },
         circleStyle() : CSSProperties {
             return {
+                position, 
                 borderRadius: '50%',
                 border: `1px solid ${color}`,
                 width: `${circleSize}px`,
@@ -80,6 +81,7 @@ export const useStyle = (w : number, h : number, scale : number) => {
         minuteHandStyle() : CSSProperties {
             const width = Math.min(w, h) / 90
             return {
+                position,
                 height: `${minuteSize}px`,
                 width: `${width}px`,
                 background: color,
@@ -90,6 +92,7 @@ export const useStyle = (w : number, h : number, scale : number) => {
         hourHandStyle() : CSSProperties {
             const width = Math.min(w, h) / 70
             return {
+                position,
                 height: `${hourSize}px`,
                 width: `${width}px`,
                 background: color,
@@ -97,5 +100,17 @@ export const useStyle = (w : number, h : number, scale : number) => {
                 left: `${-width / 2}px` 
             }
         },
+        dotStyle() : CSSProperties {
+            const width : number = Math.min(w, h) / 80
+            return {
+                position, 
+                width : `${width}px`, 
+                height: `${width}px`, 
+                top : `${-width / 2}px`,
+                left: `${-width / 2}px`,
+                background: color,
+                borderRadius: '50%'
+            }
+        }
     }
 }
