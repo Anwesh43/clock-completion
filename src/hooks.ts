@@ -95,8 +95,5 @@ export const useStyle = (w : number, h : number, scale : number) => {
                 left: `${-width / 2}px` 
             }
         },
-
-
-
     }
 }
