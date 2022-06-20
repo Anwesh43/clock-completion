@@ -57,6 +57,7 @@ export const useStyle = (w : number, h : number, scale : number) => {
     const circleSize : number = Math.min(w, h) / 5 
     const minuteSize : number = Math.min(w, h) / 16 
     const hourSize : number = Math.min(w, h) / 25 
+    const fontSize : number = Math.min(w, h) / 40
     return {
         parentStyle(rot : number, t : number) : CSSProperties {
             const transform = `rotate(${rot + t * scale}deg)`
@@ -110,6 +111,16 @@ export const useStyle = (w : number, h : number, scale : number) => {
                 left: `${-width / 2}px`,
                 background: color,
                 borderRadius: '50%'
+            }
+        },
+        textStyle(i : number) : CSSProperties {
+            return {
+                position, 
+                top : `${-circleSize * 0.49}px`,
+                left: `${-fontSize / 2}px`,
+                fontSize: `${fontSize}px`,
+                
+                color 
             }
         }
     }
