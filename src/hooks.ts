@@ -58,11 +58,13 @@ export const useStyle = (w : number, h : number, scale : number) => {
     const minuteSize : number = Math.min(w, h) / 16 
     const hourSize : number = Math.min(w, h) / 25 
     return {
-        parentStyle() : CSSProperties {
+        parentStyle(rot : number, t : number) : CSSProperties {
+            const transform = `rotate(${rot + t * scale}deg)`
             return {
                 position,
                 left, 
                 top, 
+                transform
             }
         },
         circleStyle() : CSSProperties {
